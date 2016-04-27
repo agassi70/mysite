@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js">
+    </script>
+
+    <link rel="import" href="bower_components/iron-icons/iron-icons.html">
+    <link rel="import" href="bower_components/iron-flex-layout/classes/iron-flex-layout.html">
+    <link rel="import" href="bower_components/iron-flex-layout/iron-flex-layout.html">
+    <link rel="import" href="bower_components/paper-button/paper-button.html">
+    <link rel="import" href="bower_components/paper-header-panel/paper-header-panel.html">
+    <link rel="import" href="bower_components/paper-toolbar/paper-toolbar.html">
+    <link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
+    <link rel="import" href="bower_components/paper-card/paper-card.html">
+    <link rel="import" href="bower_components/paper-tooltip/paper-tooltip.html">
+    <link rel="import" href="elements/counter-element.html">
+    <link rel="import" href="elements/main-element.html">
+
+    <style is="custom-style">
+
+      paper-toolbar {
+        --paper-toolbar-background: DarkSlateGray;
+        @apply(--layout-vertical);
+        @apply(--layout-center-center);
+      }
+
+      paper-button {
+        margin-left: 2em;
+        --paper-button-ink-color: DeepSkyBlue;
+      }
+
+      #mainfooter {
+        @apply(--layout-vertical);
+        @apply(--layout-center-center);
+        width: 100%;
+        background-color: DarkSlateGray;
+        color: whitesmoke;
+      }
+
+      #image {
+        @apply(--layout-vertical);
+        @apply(--layout-center-center);
+        background-color: LightGray;
+      }
+
+      iron-image {
+        height: 100%;
+        --iron-image-height: 100%;
+      }
+
+      #footer {
+        padding-bottom: 1em;
+      }
+
+      #pages {
+        height: 400px;
+      }
+      
+    </style>
+  </head>
+  <body class="fullbleed layout vertical">
+    <paper-header-panel class="flex">
+      <paper-toolbar id="topbar">
+        <paper-button id="main" raised>Главная</paper-button>
+        <paper-button id="order" raised>Заказ авто</paper-button>
+        <paper-button id="stock" raised>Авто в наличии</paper-button>
+        <paper-button id="partner" raised>Наши партнеры</paper-button>
+        <paper-button id="overview" raised>Обзор авто</paper-button>
+        <paper-button id="contact" raised>Контакты</paper-button>
+      </paper-toolbar>
+
+      <div id="image">
+      <iron-image src="/images/bw.jpg"></iron-image>
+      </div>
+
+      <div id="mainfooter">
+        <h2>Автомобили из США в наличии и под заказ - воплоти мечту в жизнь</h2>
+      </div>
+
+      <main-element id="pages"></main-element>
+
+      <div id="footer" align="center">
+        <p>
+          <iron-icon icon="mail"></iron-icon>
+          <span>een@gmail.com</span>
+        </p>
+        <p>
+          <iron-icon icon="communication:phone"></iron-icon>
+          <span>+380 (99) 445 2880</span>
+        </p>
+      </div>
+
+      <counter-element></counter-element>
+
+    </paper-header-panel>
+
+    <script type="text/javascript">
+
+    var heightScreen;
+    
+    window.onload = function() {
+      heightScreen = document.body.clientHeight;
+      document.getElementById('topbar').style.height = heightScreen * 0.125 + 'px';
+      document.getElementById('mainfooter').style.height = heightScreen * 0.125 + 'px';
+      document.getElementById('image').style.height = heightScreen * 0.75 + 'px';
+      sessionStorage.setItem('innerHeight', heightScreen * 0.87);
+    };
+
+    document.getElementById('main').addEventListener('tap', toMainPage);
+    document.getElementById('order').addEventListener('tap', openOrder);
+    document.getElementById('stock').addEventListener('tap', openStock);
+    document.getElementById('partner').addEventListener('tap', openPartner);
+    document.getElementById('overview').addEventListener('tap', openOverview);
+    document.getElementById('contact').addEventListener('tap', toContact);
+
+    var pages = document.getElementById('pages');
+
+    function toMainPage() {
+      pages.fire('close');
+      location.href = '#image';
+    };
+
+    function openOrder() {
+      pages.fire('close');
+      pages.fire('order');
+      location.href = '#orderText';
+    };
+
+    function openStock() {
+      pages.fire('close');
+      pages.fire('stock');
+      location.href = '#stockText';
+    };
+
+    function openPartner() {
+      pages.fire('close');
+      pages.fire('partner');
+      location.href = '#partnerText';
+    };
+
+    function openOverview() {
+      pages.fire('close');
+      pages.fire('overview');
+      location.href = '#overviewText';
+    };
+
+    function toContact() {
+      location.href = '#footer';
+    }
+  </script>
+  </body>
+</html>

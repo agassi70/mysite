@@ -1,0 +1,11 @@
+{
+  "name": "newpr",
+  "description": "newpr",
+  "license": "MIT",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.4.0",
+    "paper-elements": "PolymerElements/paper-elements#^1.0.1",
+    "iron-elements": "PolymerElements/iron-elements#^1.0.1",
+    "iron-icons": "PolymerElements/iron-icons#^1.1.3"
+  }
+}

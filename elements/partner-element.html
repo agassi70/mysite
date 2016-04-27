@@ -1,0 +1,56 @@
+<dom-module id='partner-element'>
+    <style>
+        :host {
+            @apply(--layout-vertical);
+            @apply(--layout-center-center);
+        }
+
+        [par1] {
+            font-size: 1.5em;
+            padding: 3% 4% 0;
+            text-align: justify;
+            text-indent: 2em;
+            background-color: LightSlateGray;
+            height: 84%;
+        }
+
+        [footer] {
+            width: 100%;
+            height: 15%;
+            background-color: DarkSlateGray;
+            margin: 0;
+        }
+
+    </style>
+
+    <template>
+        <div id="partnerText">
+            <div par1>
+            Мы сотрудничаем с крупной дилерской фирмой <b>Auto World</b>, которая обеспечивает доступ на аукционы и
+            дилерские площадки во всех штатах США. Ресурс для поиска и подбора авто, понимания рынка автомобилей в США
+            <a href="http://www.auto-wd.com/" target="_blank">www.auto-wd.com</a>.
+            Еще один сайт наших партнеров <a href="http://amerocars.com/" target="_blank">amerocars.com</a>.
+            <p>
+              Если Вас заинтересовал какой-то автомобиль или Вы хотите обсудить детали заказа - свяжитесь с нами, задайте интересующие вопросы.
+            </p>
+            </div>
+            <p footer></p>
+         </div>
+    </template>
+
+    <script>
+        'use strict';
+
+        Polymer({
+            is: 'partner-element',
+            listeners: {
+                'setHeight': '_setHeight'
+            },
+
+            _setHeight: function() {
+                this.$.partnerText.style.height = sessionStorage.getItem('innerHeight') + 'px';
+            }
+        });
+    </script>
+
+</dom-module>

@@ -1,0 +1,78 @@
+<!--suppress GjsLint -->
+<link rel="import" href="./order-auto-element.html">
+<link rel="import" href="./stock-element.html">
+<link rel="import" href="./partner-element.html">
+<link rel="import" href="./overview-element.html">
+
+<dom-module id='main-element'>
+
+  <template>
+    <order-auto-element id="order" hidden="{{isOrderHidden}}"></order-auto-element>
+    <stock-element id="stock" hidden="{{isStockHidden}}"></stock-element>
+    <partner-element id="partner" hidden="{{isPartnerHidden}}"></partner-element>
+    <overview-element id="overview" hidden="{{isOverviewHidden}}" heightInnerPage="{{heightPage}}"></overview-element>
+  </template>
+
+  <script>
+    'use strict';
+
+    Polymer({
+      is: 'main-element',
+      properties: {
+        isOrderHidden: {
+           type: Boolean,
+          value: true
+        },
+        isStockHidden: {
+          type: Boolean,
+          value: true
+        },
+        isPartnerHidden: {
+          type: Boolean,
+          value: true
+        },
+        isOverviewHidden: {
+          type: Boolean,
+          value: true
+        }
+      },
+
+      listeners: {
+        'close': '_closePages',
+        'order': '_orderHidden',
+        'stock': '_stockHidden',
+        'partner': '_partnerHidden',
+        'overview': '_overviewHidden'
+      },
+
+      _closePages: function(e) {
+        this.isOrderHidden = true;
+        this.isStockHidden = true;
+        this.isPartnerHidden = true;
+        this.isOverviewHidden = true;
+      },
+
+      _orderHidden: function (e) {
+        this.isOrderHidden = false;
+        this.$.order.fire('setHeight');
+      },
+
+      _stockHidden: function (e) {
+        this.isStockHidden = false;
+        this.$.stock.fire('setHeight');
+      },
+
+      _partnerHidden: function (e) {
+        this.isPartnerHidden = false;
+        this.$.partner.fire('setHeight');
+      },
+
+      _overviewHidden: function (e) {
+        this.isOverviewHidden = false;
+        this.$.overview.fire('setHeight');
+      }
+
+    });
+  </script>
+
+</dom-module>

@@ -1,0 +1,62 @@
+<dom-module id='stock-element'>
+    <style>
+        :host {
+            @apply(--layout-vertical);
+            @apply(--layout-center-center);
+        }
+
+        [par1] {
+            font-size: 1.5em;
+            padding: 3% 4% 0;
+            text-align: justify;
+            text-indent: 2em;
+            background-color: LightSlateGray;
+            height: 84%;
+        }
+
+        [footer] {
+            width: 100%;
+            height: 15%;
+            background-color: DarkSlateGray;
+            margin: 0;
+        }
+    </style>
+
+    <template>
+        <div id="stockText">
+            <div par1>
+            Кроме автомобилей под заказ, мы дополнительно приобретаем популярные модели машин на свой выбор
+            - не битые, с небольшим пробегом, с хорошей оценкой аукциона либо с повреждениями, которые требуют небольших затрат
+            на восстановление. Через определенное время после погрузки в контейнер и отправки мы начинаем предлагать авто для продажи.
+            При этом наша цена всегда ниже рыночной.
+            Мы предоставляем фото выбранного автомобиля на аукционе или в салоне и сориентируем когда авто будет на Украине.
+            В случае принятия решения о приобретении мы оговорим этапы, заключим с Вами соответствующий договор и
+            автомобиль будет растаможен уже на Ваше имя. В данный момент в наличие имеются следующие авто
+            <a href="../cars/ford.html">Ford Focus</a>,
+            <a href="../cars/nissan.html">Nissan Leaf</a>.
+            Ожидают отправки еще один Ford Focus Electric 2013 г.в. и  Smart For Two 2013 г.в. в идеальном состоянии.
+            Информация по ним будет размещена позже, после формирования контейнера.
+            <p>
+                Если Вас заинтересовал какой-то автомобиль или Вы хотите обсудить детали заказа - свяжитесь с нами, задайте интересующие вопросы.
+            </p>
+            </div>
+            <p footer></p>
+        </div>
+    </template>
+
+    <script>
+        'use strict';
+
+        Polymer({
+            is: 'stock-element',
+            listeners: {
+                'setHeight': '_setHeight'
+            },
+
+            _setHeight: function() {
+                this.$.stockText.style.height = sessionStorage.getItem('innerHeight') + 'px';
+            }
+        });
+    </script>
+
+</dom-module>

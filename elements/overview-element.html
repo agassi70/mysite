@@ -1,0 +1,122 @@
+<dom-module id='overview-element'>
+    <style>
+
+        paper-toolbar {
+            --paper-toolbar-background: DarkSlateGray;
+            --paper-toolbar-height: 44%;
+            @apply(--layout-vertical);
+            @apply(--layout-center-center);
+        }
+
+        paper-icon-button {
+            width: auto;
+            height: auto;
+        }
+
+        paper-tooltip {
+            --paper-tooltip: {
+                font-size: 1em;
+                color: red;
+                background-color: DarkGray;
+                margin-top: 3em;
+            };
+        }
+
+        h2 {
+            @apply(--layout-vertical);
+            @apply(--layout-center-center);
+            background-color: lightslategrey;
+            margin: 0;
+            height: 14%;
+        }
+
+    </style>
+    <template>
+        <div id="overviewText">
+            <h2>Обзор электромобилей, которые мы рекомендуем для приобретения в США</h2>
+
+            <paper-toolbar>
+                <div>
+                    <a href="http://auto.eizvestia.com/full/222-test-drajv-elektromobilya-nissan-leaf" target="_blank">
+                        <paper-icon-button src="../images/nissan.jpg"></paper-icon-button>
+                        <paper-tooltip>Nissan Leaf</paper-tooltip>
+                   </a>
+                </div>
+                <div>
+                    <a href="http://electromobiler.com/polnyiy-obzor-elektrokara-ford-focus-e
+                        <paper-tooltip>Nissan Leaf</paper-tooltip>lectric/" target="_blank">
+                        <paper-icon-button src="../images/ford.jpg"></paper-icon-button>
+                        <paper-tooltip>Ford Focus Electric</paper-tooltip>
+                    </a>
+                </div>
+                <div>
+                    <a href="http://chevrolet-volt.infocar.ua/test7791_volt_id1126.html" target="_blank">
+                        <paper-icon-button src="../images/chevy2.jpg"></paper-icon-button>
+                        <paper-tooltip>Chevrolet Volt</paper-tooltip>
+                    </a>
+                </div>
+                <div>
+                    <a href="https://www.tesla-club.ru/ru/articles/obzor-avtomobilya-model-s/" target="_blank">
+                        <paper-icon-button src="../images/tesla.jpg"></paper-icon-button>
+                        <paper-tooltip>Tesla Model S</paper-tooltip>
+                    </a>
+                </div>
+                <div>
+                    <a href="http://electromobiler.com/polnyiy-obzor-elektrokar-smart-fortwo-electric-drive/" target="_blank">
+                        <paper-icon-button src="../images/smart.jpg"></paper-icon-button>
+                        <paper-tooltip>Smart ForTwo</paper-tooltip>
+                    </a>
+                </div>
+            </paper-toolbar>
+
+            <paper-toolbar>
+                <div>
+                    <a href="http://electromobiler.com/polnyiy-obzor-elektrokara-fiat-500e/" target="_blank">
+                        <paper-icon-button src="../images/fiat.jpg"></paper-icon-button>
+                        <paper-tooltip>Fiat 500e</paper-tooltip>
+                    </a>
+                </div>
+                <div>
+                    <a href="http://bmw-i3.infocar.ua/test9130_i3_id3076.html" target="_blank">
+                        <paper-icon-button src="../images/bmw.jpg"></paper-icon-button>
+                        <paper-tooltip>BMW i3</paper-tooltip>
+                    </a>
+                </div>
+                <div>
+                    <a href="http://motocarrello.ru/jelektromobili-toyota/1126-jelektromobil-tojota.html" target="_blank">
+                        <paper-icon-button src="../images/toyotarav.jpg"></paper-icon-button>
+                        <paper-tooltip>Toyota RAV4 EV</paper-tooltip>
+                    </a>
+                </div>
+                <div>
+                    <a href="http://electromobiler.com/polnyiy-obzor-elektrokara-mercedes-b-class-electric-drive/" target="_blank">
+                        <paper-icon-button src="../images/mercedes.jpg"></paper-icon-button>
+                        <paper-tooltip>Mercedes B-Class Electric Drive</paper-tooltip>
+                    </a>
+                </div>
+                <div>
+                    <a href="http://ekomob.ru/elektromobili-marki-i-modeli/" target="_blank">
+                        <paper-icon-button src="../images/fordice.jpg"></paper-icon-button>
+                        <paper-tooltip>Обзор электромобилей</paper-tooltip>
+                    </a>
+                </div>
+            </paper-toolbar>
+        </div>
+    </template>
+
+    <script>
+        'use strict';
+
+        Polymer({
+            is: 'overview-element',
+            listeners: {
+                'setHeight': '_setHeight'
+            },
+
+            _setHeight: function() {
+                this.$.overviewText.style.height = sessionStorage.getItem('innerHeight') + 'px';
+            }
+        });
+    </script>
+
+</dom-module>

@@ -1,0 +1,39 @@
+<link rel="import" href="../bower_components/paper-material/paper-material.html">
+
+<dom-module id='counter-element'>
+  <style>
+    :host {
+    @apply(--layout-vertical);
+    @apply(--layout-center);
+    margin-bottom: 1em;
+    }
+  </style>
+
+  <template>
+  <paper-material hidden$="{{loading}}">
+    <div id="qooi-counter">
+      <a href="http://qooi.ru/" title="Бесплатный счетчик посещений на сайт">
+      <img src="http://qooi.ru/counter/standard/001.png" alt="Счетчик посещаемости и статистика сайта">
+      <div id="qooi-counter-visits"></div>
+      <div id="qooi-counter-views"></div>
+      </a>
+    </div>
+  </paper-material>
+  <script type="text/javascript" src="http://qooi.ru/counter.js"></script>
+  </template>
+
+  <script>
+    'use strict';
+
+    Polymer({
+      is: 'counter-element',
+      properties: {
+        loading: {
+          type: Boolean,
+          value: false
+        }
+      }
+    });
+  </script>
+
+</dom-module>
