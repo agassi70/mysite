@@ -1,62 +1,105 @@
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="./ford1-element.html">
+<link rel="import" href="./smart-element.html">
+<link rel="import" href="./volt-element.html">
+
 <dom-module id='stock-element'>
-    <style>
-        :host {
-            @apply(--layout-vertical);
-            @apply(--layout-center-center);
-        }
+  <style>
+    :host {
+      @apply(--layout-vertical);
+      @apply(--layout-center-center);
+    }
 
-        [par1] {
-            font-size: 1.5em;
-            padding: 3% 4% 0;
-            text-align: justify;
-            text-indent: 2em;
-            background-color: LightSlateGray;
-            height: 84%;
-        }
+    #pageText {
+      height: 100%;
+    }
 
-        [footer] {
-            width: 100%;
-            height: 15%;
-            background-color: DarkSlateGray;
-            margin: 0;
-        }
-    </style>
+    [parag] {
+      opacity: 0.9;
+      color: whitesmoke;
+      font-size: 1.4em;
+      font-weight: 500;
+      line-height: 1.5;
+      padding: 2% 3% 0;
+      text-align: justify;
+      text-indent: 2em;
+      background-image: url('../images/acura.jpg');
+      background-position: bottom;
+      background-repeat: no-repeat;
+      height: 83.5%;
+      margin: 0;
+    }
 
-    <template>
-        <div id="stockText">
-            <div par1>
-            Кроме автомобилей под заказ, мы дополнительно приобретаем популярные модели машин на свой выбор
-            - не битые, с небольшим пробегом, с хорошей оценкой аукциона либо с повреждениями, которые требуют небольших затрат
-            на восстановление. Через определенное время после погрузки в контейнер и отправки мы начинаем предлагать авто для продажи.
-            При этом наша цена всегда ниже рыночной.
-            Мы предоставляем фото выбранного автомобиля на аукционе или в салоне и сориентируем когда авто будет на Украине.
-            В случае принятия решения о приобретении мы оговорим этапы, заключим с Вами соответствующий договор и
-            автомобиль будет растаможен уже на Ваше имя. В данный момент в наличие имеются следующие авто
-            <a href="../cars/ford.html">Ford Focus</a>,
-            <a href="../cars/nissan.html">Nissan Leaf</a>.
-            Ожидают отправки еще один Ford Focus Electric 2013 г.в. и  Smart For Two 2013 г.в. в идеальном состоянии.
-            Информация по ним будет размещена позже, после формирования контейнера.
-            <p>
-                Если Вас заинтересовал какой-то автомобиль или Вы хотите обсудить детали заказа - свяжитесь с нами, задайте интересующие вопросы.
-            </p>
-            </div>
-            <p footer></p>
+    [footer] {
+      width: 100%;
+      height: 12.5%;
+      background-color: DarkSlateGray;
+      margin: 0;
+    }
+
+    [autos] {
+      margin-top: 8%;
+      text-align: center;
+    }
+
+    paper-button {
+      color: LightSlateGray;
+      font-size: 0.8em;
+      margin: 3%;
+      border: 1px solid aquamarine;
+    }
+
+    paper-button:hover {
+      background: DarkSlateGray;
+    }
+  </style>
+
+  <template>
+    <div id="pageText">
+      <div parag>
+        <p>Кроме автомобилей под заказ, мы дополнительно приобретаем популярные модели машин на свой выбор
+          - не битые, с небольшим пробегом, с хорошей оценкой аукциона либо с повреждениями, которые требуют небольших затрат
+          на восстановление. Предлагаемая нами цена всегда ниже рыночной.
+          Мы предоставляем фото выбранного автомобиля на аукционе или в салоне и сориентируем когда авто будет на Украине.
+          В случае принятия решения о приобретении мы оговорим этапы, заключим с Вами соответствующий договор и
+          автомобиль будет растаможен уже на Ваше имя.
+        </p>
+
+        <div autos>
+          <p>
+            В данный момент в наличии имеются следующие авто:
+          </p>
+          <paper-button on-tap="_openFord" raised>Ford Focus</paper-button>
+          <paper-button on-tap="_openSmart" raised>Smart ForTwo</paper-button>
+          <paper-button on-tap="_openVolt" raised>Chevrolet Volt</paper-button>
         </div>
-    </template>
+      </div>
 
-    <script>
-        'use strict';
+      <ford1-element id="ford1"></ford1-element>
+      <smart-element id="smart"></smart-element>
+      <volt-element id="volt"></volt-element>
 
-        Polymer({
-            is: 'stock-element',
-            listeners: {
-                'setHeight': '_setHeight'
-            },
+      <p footer></p>
+    </div>
+  </template>
 
-            _setHeight: function() {
-                this.$.stockText.style.height = sessionStorage.getItem('innerHeight') + 'px';
-            }
-        });
-    </script>
+  <script>
+    'use strict';
 
+    Polymer({
+      is: 'stock-element',
+
+      _openFord: function(e) {
+        this.$.ford1.fire('openDialog');
+      },
+
+      _openSmart: function(e) {
+        this.$.smart.fire('openDialog');
+      },
+
+      _openVolt: function(e) {
+        this.$.volt.fire('openDialog');
+      }
+    });
+  </script>
 </dom-module>

@@ -3,6 +3,7 @@
 <link rel="import" href="./stock-element.html">
 <link rel="import" href="./partner-element.html">
 <link rel="import" href="./overview-element.html">
+<link rel="import" href="./contact-element.html">
 
 <dom-module id='main-element'>
 
@@ -10,7 +11,8 @@
     <order-auto-element id="order" hidden="{{isOrderHidden}}"></order-auto-element>
     <stock-element id="stock" hidden="{{isStockHidden}}"></stock-element>
     <partner-element id="partner" hidden="{{isPartnerHidden}}"></partner-element>
-    <overview-element id="overview" hidden="{{isOverviewHidden}}" heightInnerPage="{{heightPage}}"></overview-element>
+    <overview-element id="overview" hidden="{{isOverviewHidden}}"></overview-element>
+    <contact-element id="contact" hidden="{{isContactHidden}}"></contact-element>
   </template>
 
   <script>
@@ -34,6 +36,10 @@
         isOverviewHidden: {
           type: Boolean,
           value: true
+        },
+        isContactHidden: {
+          type: Boolean,
+          value: true
         }
       },
 
@@ -42,7 +48,8 @@
         'order': '_orderHidden',
         'stock': '_stockHidden',
         'partner': '_partnerHidden',
-        'overview': '_overviewHidden'
+        'overview': '_overviewHidden',
+        'contact': '_contactHidden'
       },
 
       _closePages: function(e) {
@@ -50,29 +57,33 @@
         this.isStockHidden = true;
         this.isPartnerHidden = true;
         this.isOverviewHidden = true;
+        this.isContactHidden = true;
       },
 
       _orderHidden: function (e) {
         this.isOrderHidden = false;
-        this.$.order.fire('setHeight');
       },
 
       _stockHidden: function (e) {
         this.isStockHidden = false;
-        this.$.stock.fire('setHeight');
+        this.$.stock.style.height = sessionStorage.getItem('innerHeight') + 'px';
       },
 
       _partnerHidden: function (e) {
         this.isPartnerHidden = false;
-        this.$.partner.fire('setHeight');
+        this.$.partner.style.height = sessionStorage.getItem('innerHeight') + 'px';
       },
 
       _overviewHidden: function (e) {
         this.isOverviewHidden = false;
-        this.$.overview.fire('setHeight');
+        this.$.overview.style.height = sessionStorage.getItem('innerHeight') + 'px';
+      },
+
+      _contactHidden: function (e) {
+        this.isContactHidden = false;
+        this.$.contact.style.height = sessionStorage.getItem('innerHeight') + 'px';
       }
 
     });
   </script>
-
 </dom-module>

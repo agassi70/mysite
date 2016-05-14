@@ -1,0 +1,144 @@
+<dom-module id='ford1-element'>
+  <style is="custom-style">
+    #dialog {
+      border: 0.75em solid whitesmoke;
+    }
+
+    #exit {
+      margin-left: 40%;
+      margin-bottom: 2%;
+      color: whitesmoke;
+    }
+
+    #carousel {
+      display: inline-block;
+      width: 50%;
+    }
+
+    #description {
+      display: inline-block;
+      width: 48%;
+    }
+
+    #header {
+      margin: 0;
+      background-color: LightSlateGray;
+      padding: 0.5% 0;
+    }
+
+    .text {
+      text-align: justify;
+      font-weight: 400;
+      font-size: 1.2em;
+      color: black;
+      padding-bottom: 0.5em;
+    }
+
+    #main {
+      width: 100%;
+    }
+
+    paper-icon-button {
+      display: inline-block;
+      width: 10%;
+      height: auto;
+      outline: aqua solid 1.5px;
+      padding: 0;
+      margin: 0.5% 1%;
+    }
+
+    paper-icon-button:hover {
+      outline: red solid 1.5px;
+    }
+
+    paper-fab {
+      --paper-fab-background: var(--paper-light-blue-300);
+    }
+
+    #strip {
+      @apply(--layout-horizontal);
+      @apply(--layout-center-center);
+      padding: 0.75em;
+      background-color: DarkSlateGray;
+      margin: 0;
+    }
+  </style>
+  <template>
+    <paper-dialog id="dialog">
+    <div id="header">
+      <div id="carousel">
+        <iron-image id="main" src="../images/ford1/foto1.jpg" sizing="contain"></iron-image>
+      </div>
+      <div id="description">
+        <div id="exit">
+        <paper-fab icon="exit-to-app" mini></paper-fab>
+          Возврат
+        </div>
+        <div class="text">
+          <p align="center"><b>Ford Focus Electric 2013 года выпуска.</b></p>
+          Честный (нескрученый) пробег 43400 миль.
+          Не тешьте себя иллюзиями относительно пробегов американских автомобилей, которые Вы
+          видите в объявлениях - определенная часть из них с перемотанными показаниями спидометров.
+          Без повреждений, не бит, не крашен, отличное состояние. Салон - перфорированная кожа.
+          Прибытие в Одессу ожидается к середине июня.
+          При заключении договора и 50-процентной предоплате до 11 июня - наша цена 18000 долларов США.
+          При раннем бронировании и предоплате поговорим о дополнительных бонусах. Покупателю предоставляется
+          история авто и отчет о состоянии с аукциона.
+        </div>
+      </div>
+    </div>
+
+    <div id="strip">
+      <paper-icon-button src="../images/ford1/foto1.jpg"></paper-icon-button>
+      <paper-icon-button src="../images/ford1/foto2.jpg"></paper-icon-button>
+      <paper-icon-button src="../images/ford1/foto3.jpg"></paper-icon-button>
+      <paper-icon-button src="../images/ford1/foto6.jpg"></paper-icon-button>
+      <paper-icon-button src="../images/ford1/foto7.jpg"></paper-icon-button>
+      <paper-icon-button src="../images/ford1/foto8.jpg"></paper-icon-button>
+      <paper-icon-button src="../images/ford1/foto9.jpg"></paper-icon-button>
+      <paper-icon-button src="../images/ford1/foto10.jpg"></paper-icon-button>
+    </div>
+    </paper-dialog>
+  </template>
+
+  <script>
+    'use strict';
+
+    Polymer({
+      is: 'ford1-element',
+
+      listeners: {
+        'openDialog': '_open'
+
+      },
+
+      ready: function() {
+        var icons = Polymer.dom(this.root).querySelectorAll('paper-icon-button');
+        this.$.exit.addEventListener('tap', this._close.bind(this));
+
+        for (var i = 0; i < icons.length; i++) {
+          icons[i].addEventListener('tap', this._insertFoto.bind(this));
+        }
+      },
+
+      _insertFoto: function(event) {
+        var carousel = this.$.carousel;
+        var path = event.target.getAttribute('src');
+        var newElem = this.$.main.cloneNode(true);
+        var prevFoto = carousel.firstElementChild;
+
+        newElem.setAttribute('src', path);
+        carousel.replaceChild(newElem, prevFoto);
+      },
+
+      _open: function() {
+        this.$.main.style.height  = sessionStorage.getItem('innerHeight') * 0.75 + 'px';
+        this.$.dialog.open();
+      },
+
+      _close: function() {
+        this.$.dialog.close();
+      }
+    });
+  </script>
+</dom-module>

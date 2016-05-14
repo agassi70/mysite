@@ -1,0 +1,75 @@
+<dom-module id='contact-element'>
+  <style>
+    :host {
+      @apply(--layout-vertical);
+      @apply(--layout-center-center);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    #pageText {
+      height: 100%;
+      width: 100%;
+    }
+
+    [main] {
+      height: 87.5%;
+      background-image: url('../images/merc.jpg');
+      background-position: 50% 75%;
+      background-repeat: no-repeat;
+      background-color: LightGray;
+      margin: 0;
+    }
+
+    [footer] {
+      @apply(--layout-vertical);
+      @apply(--layout-center-center);
+      width: 100%;
+      height: 12.5%;
+      background-color: DarkSlateGray;
+    }
+
+    [text] {
+      font-size: 1.5em;
+      font-weight: 500;
+      line-height: 1.5;
+      padding: 3% 5%;
+    }
+  </style>
+
+  <template>
+    <div id="pageText">
+      <div main>
+        <div text>
+          <p>
+            <iron-icon icon="account-box"></iron-icon>
+            <span>ООО "Креатив-Харьков"</span>
+            <p>г. Харьков, ул. Плехановская, 8</p>
+            <p>(здание отеля "АН-2")</p>
+          </p>
+          <p>
+            <iron-icon icon="communication:phone"></iron-icon>
+            <span>+380 (99) 445 2880</span>
+          </p>
+          <p>
+            <iron-icon icon="communication:email"></iron-icon>
+            <span>order@autofromusa.com.ua</span>
+          </p>
+        </div>
+      </div>
+
+      <div footer></div>
+    </div>
+  </template>
+
+  <script>
+    'use strict';
+
+    Polymer({
+      is: 'contact-element'
+    });
+  </script>
+</dom-module>

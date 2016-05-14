@@ -2,13 +2,14 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="авто из сша автомобили из сша американские авто купить заказать из США">
+    <title>USA auto</title>
     <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js">
     </script>
 
     <link rel="import" href="bower_components/iron-icons/iron-icons.html">
+    <link rel="import" href="../bower_components/iron-icons/communication-icons.html">
     <link rel="import" href="bower_components/iron-flex-layout/classes/iron-flex-layout.html">
-    <link rel="import" href="bower_components/iron-flex-layout/iron-flex-layout.html">
     <link rel="import" href="bower_components/paper-button/paper-button.html">
     <link rel="import" href="bower_components/paper-header-panel/paper-header-panel.html">
     <link rel="import" href="bower_components/paper-toolbar/paper-toolbar.html">
@@ -19,15 +20,24 @@
     <link rel="import" href="elements/main-element.html">
 
     <style is="custom-style">
+      * {
+        padding: 0;
+      }
 
-      paper-toolbar {
-        --paper-toolbar-background: DarkSlateGray;
+      paper-header-panel {
+        height: 100%;
+      }
+
+      #topbar {
         @apply(--layout-vertical);
         @apply(--layout-center-center);
+        --paper-toolbar-background: DarkSlateGray;
+        height: 12.5%;
       }
 
       paper-button {
-        margin-left: 2em;
+        margin: 0 1.2em;
+        padding: 0.8em;
         --paper-button-ink-color: DeepSkyBlue;
       }
 
@@ -35,6 +45,7 @@
         @apply(--layout-vertical);
         @apply(--layout-center-center);
         width: 100%;
+        height: 12.5%;
         background-color: DarkSlateGray;
         color: whitesmoke;
       }
@@ -43,30 +54,21 @@
         @apply(--layout-vertical);
         @apply(--layout-center-center);
         background-color: LightGray;
+        height: 75%;
       }
 
       iron-image {
         height: 100%;
         --iron-image-height: 100%;
       }
-
-      #footer {
-        padding-bottom: 1em;
-      }
-
-      #pages {
-        height: 400px;
-      }
-      
     </style>
   </head>
-  <body class="fullbleed layout vertical">
+  <body class="fullbleed vertical horizontal layout">
     <paper-header-panel class="flex">
       <paper-toolbar id="topbar">
-        <paper-button id="main" raised>Главная</paper-button>
+        <paper-button id="partner" raised>Главная</paper-button>
         <paper-button id="order" raised>Заказ авто</paper-button>
         <paper-button id="stock" raised>Авто в наличии</paper-button>
-        <paper-button id="partner" raised>Наши партнеры</paper-button>
         <paper-button id="overview" raised>Обзор авто</paper-button>
         <paper-button id="contact" raised>Контакты</paper-button>
       </paper-toolbar>
@@ -81,73 +83,58 @@
 
       <main-element id="pages"></main-element>
 
-      <div id="footer" align="center">
-        <p>
-          <iron-icon icon="mail"></iron-icon>
-          <span>een@gmail.com</span>
-        </p>
-        <p>
-          <iron-icon icon="communication:phone"></iron-icon>
-          <span>+380 (99) 445 2880</span>
-        </p>
-      </div>
-
-      <counter-element></counter-element>
-
     </paper-header-panel>
 
+    <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
+      (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+          try {
+            w.yaCounter37250510 = new Ya.Metrika({
+              id:37250510,
+              clickmap:true,
+              trackLinks:true,
+              accurateTrackBounce:true,
+              webvisor:true
+            });
+          } catch(e) { }
+        });
 
+        var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+          d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+      })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/37250510" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
+  <script type="text/javascript">
     var heightScreen;
-    
-    window.onload = function() {
-      heightScreen = document.body.clientHeight;
-      document.getElementById('topbar').style.height = heightScreen * 0.125 + 'px';
-      document.getElementById('mainfooter').style.height = heightScreen * 0.125 + 'px';
-      document.getElementById('image').style.height = heightScreen * 0.75 + 'px';
-      sessionStorage.setItem('innerHeight', heightScreen * 0.87);
-    };
 
-    document.getElementById('main').addEventListener('tap', toMainPage);
-    document.getElementById('order').addEventListener('tap', openOrder);
-    document.getElementById('stock').addEventListener('tap', openStock);
-    document.getElementById('partner').addEventListener('tap', openPartner);
-    document.getElementById('overview').addEventListener('tap', openOverview);
-    document.getElementById('contact').addEventListener('tap', toContact);
+    document.addEventListener('DOMContentLoaded', function(event) {
+      heightScreen = document.body.clientHeight;
+      sessionStorage.setItem('innerHeight', heightScreen * 0.875);
+    });
+
+    document.getElementById('partner').addEventListener('tap', openPage);
+    document.getElementById('order').addEventListener('tap', openPage);
+    document.getElementById('stock').addEventListener('tap', openPage);
+    document.getElementById('overview').addEventListener('tap', openPage);
+    document.getElementById('contact').addEventListener('tap', openPage);
 
     var pages = document.getElementById('pages');
 
-    function toMainPage() {
+    function openPage(e) {
       pages.fire('close');
-      location.href = '#image';
-    };
-
-    function openOrder() {
-      pages.fire('close');
-      pages.fire('order');
-      location.href = '#orderText';
-    };
-
-    function openStock() {
-      pages.fire('close');
-      pages.fire('stock');
-      location.href = '#stockText';
-    };
-
-    function openPartner() {
-      pages.fire('close');
-      pages.fire('partner');
-      location.href = '#partnerText';
-    };
-
-    function openOverview() {
-      pages.fire('close');
-      pages.fire('overview');
-      location.href = '#overviewText';
-    };
-
-    function toContact() {
-      location.href = '#footer';
+      pages.fire(e.target.id);
+      location.href = '#pages';
     }
   </script>
   </body>
